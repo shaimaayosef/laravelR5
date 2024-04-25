@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyController;
 
@@ -43,8 +43,14 @@ Route::get('test20', function () {
 Route::get('form', function () {
     return view('form');
 });
-Route::post('form', function () {
-    return 'Data receved';
+Route::post('form', function (Request $request) {
+    $data = "";
+    if ($request->isMethod('post')) {
+        $firstName = $request->input('fname');
+        $lastName = $request->input('lname');
+        $data = "first name: $firstName <br> last name: $lastName";
+    }
+    return "Your input was received as <br>" . $data;
 })->name('form');
 
-Route::get('test10',[MyController::class,'my_data']);
+Route::get('test10',[MyController::class,'my_data']); 
