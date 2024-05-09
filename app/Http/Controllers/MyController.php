@@ -11,4 +11,10 @@ class MyController extends Controller
     {
         return view('test');
     }
+
+    public function receiveData(Request $request){
+        $fname = $request->fname;
+        $lname = $request->lname;
+        return view('test', compact('fname', 'lname'));
+    }
 }

@@ -2,6 +2,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\Studentcontroller;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,14 +46,10 @@ Route::get('test20', function () {
 Route::get('form', function () {
     return view('form');
 });
-Route::post('form', function (Request $request) {
-    $data = "";
-    if ($request->isMethod('post')) {
-        $firstName = $request->input('fname');
-        $lastName = $request->input('lname');
-        $data = "first name: $firstName <br> last name: $lastName";
-    }
-    return "Your input was received as <br>" . $data;
-})->name('form');
+Route::post('recForm1', [MyController::class,'receiveData'])->name('form');
 
-Route::get('test10',[MyController::class,'my_data']); 
+Route::get('test10',[MyController::class,'my_data']);
+Route::post('insertClient',[ClientController::class,'store'])->name('insertClient');
+Route::get('addClient',[ClientController::class,'create']);
+Route::post('insertStudent',[Studentcontroller::class,'store'])->name('insertStudent');
+Route::get('addStudent',[Studentcontroller::class,'create']);
