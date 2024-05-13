@@ -6,7 +6,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Studentcontroller;
 
 
-Route::get('/', function () {
+Route::get('welcome', function () {
     return view('welcome');
 });
 
@@ -50,6 +50,8 @@ Route::post('recForm1', [MyController::class,'receiveData'])->name('form');
 
 Route::get('test10',[MyController::class,'my_data']);
 Route::post('insertClient',[ClientController::class,'store'])->name('insertClient');
-Route::get('addClient',[ClientController::class,'create']);
+Route::get('addClient',[ClientController::class,'create'])->name('addClient');
+Route::get('clients',[ClientController::class,'index'])->name('clients');
 Route::post('insertStudent',[Studentcontroller::class,'store'])->name('insertStudent');
-Route::get('addStudent',[Studentcontroller::class,'create']);
+Route::get('addStudent',[Studentcontroller::class,'create'])->name('addStudent');
+Route::get('students',[Studentcontroller::class,'index'])->name('students');
