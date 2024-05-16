@@ -19,6 +19,7 @@
         <th>Phone</th>
         <th>Email</th>
         <th>Website</th>
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
@@ -28,6 +29,7 @@
         <td>{{$client->phone}}</td>
         <td>{{$client->email}}</td>
         <td>{{$client->website}}</td>
+        <td><a href="{{route('editClients',$client->id)}}">Edit</a></td>
       </tr>
       @endforeach
     </tbody>
