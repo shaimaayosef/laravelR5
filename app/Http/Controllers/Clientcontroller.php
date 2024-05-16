@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Client;
 
-
-class Clientcontroller extends Controller
+class ClientController extends Controller
 {
-    private $columns = ['clientName', 'phone', 'email', 'website'];
+    private $columns = ['clientName','phone', 'email','website'];
     /**
      * Display a listing of the resource.
      */
@@ -46,7 +45,8 @@ class Clientcontroller extends Controller
      */
     public function show(string $id)
     {
-        //
+        $client = Client::findOrFail($id);
+        return view('showClient', compact('client'));
     }
 
     /**
@@ -54,7 +54,8 @@ class Clientcontroller extends Controller
      */
     public function edit(string $id)
     {
-        return view('editClients');
+        $client = Client::findOrFail($id);
+        return view('editClients', compact('client'));
     }
 
     /**
@@ -62,14 +63,17 @@ class Clientcontroller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        Client::where('id', $id)->update($request->only($this->columns));
+        return redirect('clients');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->id;
+        Client::where('id',$id)->delete();
+        return redirect('clients');
     }
 }
