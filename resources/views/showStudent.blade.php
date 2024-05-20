@@ -7,6 +7,7 @@
     <title>Show {{ $students->studentName }}</title>
 </head>
 <body>
+@include('includes.studentNav')
     <h1><strong>Student: </strong>{{ $students->studentName }}</h1>
     <hr>
     <h2><strong>age: </strong>{{ $students->age }}</h2>

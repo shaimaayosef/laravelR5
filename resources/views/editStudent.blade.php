@@ -7,7 +7,7 @@
     <title>Edit Student</title>
   </head>
 <body>
-  
+@include('includes.studentNav')
 <div class="container" style="margin-left: 20px ">
   <h2>Edit Student</h2>
 
@@ -15,8 +15,18 @@
     @csrf
     @method('put')
     <label for="studentName">Student name:</label><br>
+    <p style="color: red">
+      @error('studentName')
+        {{ $message }}
+      @enderror
+    </p>
     <input type="text" id="studentName" name="studentName" class="form-control" value="{{ $students->studentName }}"><br>
     <label for="phone">Phone:</label><br>
+    <p style="color: red">
+      @error('age')
+        {{ $message }}
+      @enderror
+    </p>
     <input type="text" id="age" name="age" class="form-control" value="{{ $students->age }}"><br><br>
     <input type="submit" value="Submit">
   </form> 

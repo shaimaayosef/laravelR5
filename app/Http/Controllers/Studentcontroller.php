@@ -34,7 +34,11 @@ class Studentcontroller extends Controller
         // $student->studentName = $request->studentName;
         // $student->age = $request->age;
         // $student->save();
-        Student::create($request->only($this->columns));
+        $data = $request->validate([
+            'studentName' => 'required|max:100|min:5',
+            'age' => 'required|Numeric',
+        ]);
+        Student::create($data);
         return redirect('students');
     }
 
@@ -72,6 +76,33 @@ class Studentcontroller extends Controller
     {
         $id = $request->id;
         Student::where('id',$id)->delete();
+        return redirect('students');
+    }
+    /**
+         * Force Delete.
+         */
+        public function forceDelete(Request $request)
+        {
+            $id = $request->id;
+            Student::where('id',$id)->forceDelete();
+            return redirect('trashedStudents');
+        }
+
+    /**
+     * trush.
+     */
+    public function trash()
+    {
+        $trashed = Student::onlyTrashed()->get();
+        return view('trashedStudents',compact('trashed'));
+    }
+
+    /**
+     * Restore.
+     */
+    public function restore(string $id)
+    {
+        Student::where('id',$id)->restore();
         return redirect('students');
     }
 }

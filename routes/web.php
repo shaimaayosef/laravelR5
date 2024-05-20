@@ -47,8 +47,9 @@ Route::get('form', function () {
     return view('form');
 });
 Route::post('recForm1', [MyController::class,'receiveData'])->name('form');
-
 Route::get('test10',[MyController::class,'my_data']);
+
+// Clients
 Route::post('insertClient',[ClientController::class,'store'])->name('insertClient');
 Route::get('addClient',[ClientController::class,'create'])->name('addClient');
 Route::get('clients',[ClientController::class,'index'])->name('clients');
@@ -56,6 +57,12 @@ Route::get('editClients/{id}',[ClientController::class,'edit'])->name('editClien
 Route::put('updateClients/{id}',[ClientController::class,'update'])->name('updateClients');
 Route::get('showClient/{id}',[ClientController::class,'show'])->name('showClient');
 Route::delete('delClient',[ClientController::class,'destroy'])->name('delClient');
+Route::get('trashedClients',[ClientController::class,'trash'])->name('trashedClients');
+Route::get('restoreClient/{id}',[ClientController::class,'restore'])->name('restoreClient');
+Route::delete('forceDeleteClient',[ClientController::class,'forceDelete'])->name('forceDeleteClient');
+
+// Students
+
 Route::post('insertStudent',[Studentcontroller::class,'store'])->name('insertStudent');
 Route::get('addStudent',[Studentcontroller::class,'create'])->name('addStudent');
 Route::get('students',[Studentcontroller::class,'index'])->name('students');
@@ -63,3 +70,6 @@ Route::get('editStudent/{id}',[Studentcontroller::class,'edit'])->name('editStud
 Route::put('updateStudent/{id}',[Studentcontroller::class,'update'])->name('updateStudent');
 Route::get('showStudent/{id}',[Studentcontroller::class,'show'])->name('showStudent');
 Route::delete('delStudent',[Studentcontroller::class,'destroy'])->name('delStudent');
+Route::get('trashedStudents',[Studentcontroller::class,'trash'])->name('trashedStudents');
+Route::get('restoreStudent/{id}',[Studentcontroller::class,'restore'])->name('restoreStudent');
+Route::delete('forceDeleteStudent',[Studentcontroller::class,'forceDelete'])->name('forceDeleteStudent');

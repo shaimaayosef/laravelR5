@@ -7,6 +7,8 @@
     <title>Show {{ $client->clientName }}</title>
 </head>
 <body>
+@include('includes.nav')
+
     <h1><strong>Client: </strong>{{ $client->clientName }}</h1>
     <hr>
     <h2><strong>Phone: </strong>{{ $client->phone }}</h2>
