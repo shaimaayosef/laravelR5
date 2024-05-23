@@ -36,12 +36,24 @@ class ClientController extends Controller
         // $client->email = $request->email;
         // $client->website = $request->website;
         // $client->save();
+        $messages = $this->errMsg();
         $data = $request->validate([
             'clientName' => 'required|max:100|min:5',
             'phone' => 'required|min:11',
             'email' => 'required|email:rfc',
             'website' => 'required',
-        ]);
+            'city' => 'required|max:30',
+            'image' => 'required',
+        ],$messages);
+        
+        $imgExt = $request->image->getClientOriginalExtension();
+        $fileName = time() . '.' . $imgExt;
+        $path = 'assets/images';
+        $request->image->move($path, $fileName);
+
+        $data['image'] = $fileName;
+
+        $data['active'] = isset($request->active);
         Client::create($data);
         return redirect('clients');
     }
@@ -69,7 +81,14 @@ class ClientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        Client::where('id', $id)->update($request->only($this->columns));
+        $messages = $this->errMsg();
+        $data = $request->validate([
+            'clientName' => 'required|max:100|min:5',
+            'phone' => 'required|min:11',
+            'email' => 'required|email:rfc',
+            'website' => 'required',
+        ], $messages);
+        Client::where('id', $id)->update($data);
         return redirect('clients');
     }
 
@@ -109,5 +128,12 @@ class ClientController extends Controller
     {
         Client::where('id',$id)->restore();
         return redirect('clients');
+    }
+
+    public function errMsg(){
+        return [
+            'clientName.required' => 'The client name is missed, please insert',
+            'clientName.min' => 'length less than 5, please insert more chars',
+        ];
     }
 }
