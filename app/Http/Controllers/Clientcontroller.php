@@ -46,14 +46,12 @@ class ClientController extends Controller
             'image' => 'required',
         ],$messages);
         
+        $data['active'] = isset($request->active);
         $imgExt = $request->image->getClientOriginalExtension();
         $fileName = time() . '.' . $imgExt;
         $path = 'assets/images';
         $request->image->move($path, $fileName);
-
         $data['image'] = $fileName;
-
-        $data['active'] = isset($request->active);
         Client::create($data);
         return redirect('clients');
     }
@@ -87,7 +85,17 @@ class ClientController extends Controller
             'phone' => 'required|min:11',
             'email' => 'required|email:rfc',
             'website' => 'required',
-        ], $messages);
+            'city' => 'required|max:30',
+            'image' => 'sometimes',
+        ],$messages);
+        $data['active'] = isset($request->active);
+        if($request->hasFile('image')) {
+        $imgExt = $request->image->getClientOriginalExtension();
+        $fileName = time() . '.' . $imgExt;
+        $path = 'assets/images';
+        $request->image->move($path, $fileName);
+        $data['image'] = $fileName;
+        }
         Client::where('id', $id)->update($data);
         return redirect('clients');
     }

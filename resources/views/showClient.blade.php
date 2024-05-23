@@ -9,7 +9,7 @@
 <body>
 @include('includes.nav')
 
-    <p><img src="{{ asset('assets/images/' . $client->image)  }}" alt=""></p>
+    <p><img width="500px" height="500px"  src="{{ asset('assets/images/' . $client->image)  }}" alt=""></p>
     <h1><strong>Client: </strong>{{ $client->clientName }}</h1>
     <hr>
     <h2><strong>Phone: </strong>{{ $client->phone }}</h2>
