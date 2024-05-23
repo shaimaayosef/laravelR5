@@ -39,7 +39,7 @@ class ClientController extends Controller
         $messages = $this->errMsg();
         $data = $request->validate([
             'clientName' => 'required|max:100|min:5',
-            'phone' => 'required|min:11',
+            'phone' => 'required||max:14|min:11',
             'email' => 'required|email:rfc',
             'website' => 'required',
             'city' => 'required|max:30',
@@ -82,7 +82,7 @@ class ClientController extends Controller
         $messages = $this->errMsg();
         $data = $request->validate([
             'clientName' => 'required|max:100|min:5',
-            'phone' => 'required|min:11',
+            'phone' => 'required|max:14|min:11',
             'email' => 'required|email:rfc',
             'website' => 'required',
             'city' => 'required|max:30',

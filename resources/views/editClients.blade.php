@@ -22,28 +22,28 @@
         {{ $message }}
       @enderror
     </p>
-    <input type="text" id="clientName" name="clientName" class="form-control" value="{{ $client->clientName }}"><br>
+    <input type="text" id="clientName" name="clientName" class="form-control" value="{{ old('clientName', $client->clientName) }}"" ><br>
     <label for="phone">Phone:</label><br>
     <p style="color: red">
       @error('phone')
         {{ $message }}
       @enderror
     </p>
-    <input type="text" id="phone" name="phone" class="form-control" value="{{ $client->phone }}"><br><br>
+    <input type="text" id="phone" name="phone" class="form-control" value="{{ old('phone', $client->phone) }}"><br><br>
     <label for="email">Email:</label><br>
     <p style="color: red">
       @error('email')
         {{ $message }}
       @enderror
     </p>
-    <input type="email" id="email" name="email" class="form-control" value="{{ $client->email }}"><br><br>
+    <input type="email" id="email" name="email" class="form-control"  value="{{ old('email', $client->email) }}"><br><br>
     <label for="website">website:</label><br>
     <p style="color: red">
       @error('website')
         {{ $message }}
       @enderror
     </p>
-    <input type="text" id="website" name="website" class="form-control" value="{{ $client->website }}"><br><br>
+    <input type="text" id="website" name="website" class="form-control" value="{{ old('website', $client->website) }}"><br><br>
     <label for="city">City:</label><br>
     <p style="color: red">
       @error('city')
@@ -52,16 +52,16 @@
     </p>
     <select name="city" id="city" class="form-control">
       <option value="">Please Select City</option>
-      <option value="Cairo" {{ $client->city == 'Cairo' ? 'selected' : '' }}>Cairo</option>
-      <option value="Giza" {{ $client->city == 'Giza' ? 'selected' : '' }}>Giza</option>
-      <option value="Alex" {{ $client->city == 'Alex' ? 'selected' : '' }}>Alex</option>
+      <option value="Cairo" {{$client->city == 'Cairo' ? 'selected' : '' }}>Cairo</option>
+      <option value="Giza" {{$client->city == 'Giza' ? 'selected' : '' }}>Giza</option>
+      <option value="Alex" {{$client->city == 'Alex' ? 'selected' : '' }}>Alex</option>
     </select>
     <br><br>
     <label for="active">Active:</label><br>
-    <input type="checkbox" id="active" name="active" class="form-control" {{ $client->active ? 'checked' : '' }}><br><br>
+    <input type="checkbox" id="active" name="active" class="form-control" {{$client->active ? 'checked' : '' }}><br><br>
     <p><img width="500px" height="500px" src="{{ asset('assets/images/' . $client->image)  }}" alt=""></p>
     <label for="image">Image:</label><br>
-    <input type="file" id="image" name="image" class="form-control" value="{{ $client->image }}" ><br><br>
+    <input type="file" id="image" name="image" class="form-control"><br><br>
     <input type="submit" value="Submit">
   </form> 
 </div>
