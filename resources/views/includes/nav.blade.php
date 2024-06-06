@@ -19,7 +19,8 @@
         <li class="active"><a href="{{ route('addClient') }}">Add</a></li>
         <li><a href="{{ route('clients') }}">Clients</a></li>
         <li><a href="{{ route('trashedClients') }}">TRUSHED</a></li>
-        <li><a href="#">Page 3</a></li>
+        @yield('menu')
+        @stack('submenu')
       </ul>
     </div>
   </nav>

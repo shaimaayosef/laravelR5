@@ -6,8 +6,8 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Studentcontroller;
 
 
-Route::get('welcome', function () {
-    return view('welcome');
+Route::get('/', function () {
+    return view('stacked');
 });
 
 // Route::get( 'marwa/{id?}', function ($id=0) {

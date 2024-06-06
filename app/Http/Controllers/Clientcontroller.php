@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
+use App\Traits\UploadFile;
 
 class ClientController extends Controller
 {
-    private $columns = ['clientName','phone', 'email','website'];
+    use UploadFile;
+    // private $columns = ['clientName','phone', 'email','website'];
     /**
      * Display a listing of the resource.
      */
@@ -47,10 +49,11 @@ class ClientController extends Controller
         ],$messages);
         
         $data['active'] = isset($request->active);
-        $imgExt = $request->image->getClientOriginalExtension();
-        $fileName = time() . '.' . $imgExt;
-        $path = 'assets/images';
-        $request->image->move($path, $fileName);
+        $fileName = $this->upload($request->image, 'assets/images');
+        // $imgExt = $request->image->getClientOriginalExtension();
+        // $fileName = time() . '.' . $imgExt;
+        // $path = 'assets/images';
+        // $request->image->move($path, $fileName);
         $data['image'] = $fileName;
         Client::create($data);
         return redirect('clients');
@@ -90,10 +93,11 @@ class ClientController extends Controller
         ],$messages);
         $data['active'] = isset($request->active);
         if($request->hasFile('image')) {
-        $imgExt = $request->image->getClientOriginalExtension();
-        $fileName = time() . '.' . $imgExt;
-        $path = 'assets/images';
-        $request->image->move($path, $fileName);
+            $fileName = $this->upload($request->image, 'assets/images');
+        // $imgExt = $request->image->getClientOriginalExtension();
+        // $fileName = time() . '.' . $imgExt;
+        // $path = 'assets/images';
+        // $request->image->move($path, $fileName);
         $data['image'] = $fileName;
         }
         Client::where('id', $id)->update($data);
