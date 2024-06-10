@@ -10,5 +10,13 @@
     <hr>
     <h2>{{ $lname }}</h2>
     <button>sign out</button>
+    $users = User::with('roles')->get();
+
+foreach ($users as $user) {
+    echo "User: " . $user->name . "\nRoles:\n";
+    foreach ($user->roles as $role) {
+        echo " - " . $role->name . "\n";
+    }
+}
 </body>
 </html>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Studentcontroller;
+use App\Http\Controllers\UserController;
 
 
 Route::get('/', function () {
@@ -73,3 +74,5 @@ Route::delete('delStudent',[Studentcontroller::class,'destroy'])->name('delStude
 Route::get('trashedStudents',[Studentcontroller::class,'trash'])->name('trashedStudents');
 Route::get('restoreStudent/{id}',[Studentcontroller::class,'restore'])->name('restoreStudent');
 Route::delete('forceDeleteStudent',[Studentcontroller::class,'forceDelete'])->name('forceDeleteStudent');
+
+Route::get('/users', [UserController::class, 'index']);
