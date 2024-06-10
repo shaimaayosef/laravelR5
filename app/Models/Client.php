@@ -14,8 +14,14 @@ class Client extends Model
         'phone',
         'email',
         'website',
-        'city',
+        'city_id',
         'image',
         'active',
+        'address'
     ];
+
+    public function city(){
+        return $this->belongsTo(City::class);
+    }
 }
+
