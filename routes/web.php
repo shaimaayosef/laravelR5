@@ -8,7 +8,7 @@ use App\Http\Controllers\UserController;
 
 
 Route::get('/', function () {
-    return view('stacked');
+    return view('welcome');
 });
 
 // Route::get( 'marwa/{id?}', function ($id=0) {
@@ -53,7 +53,7 @@ Route::get('test10',[MyController::class,'my_data']);
 // Clients
 Route::post('insertClient',[ClientController::class,'store'])->name('insertClient');
 Route::get('addClient',[ClientController::class,'create'])->name('addClient');
-Route::get('clients',[ClientController::class,'index'])->name('clients');
+Route::get('clients',[ClientController::class,'index'])-> middleware('verified')->name('clients');
 Route::get('editClients/{id}',[ClientController::class,'edit'])->name('editClients');
 Route::put('updateClients/{id}',[ClientController::class,'update'])->name('updateClients');
 Route::get('showClient/{id}',[ClientController::class,'show'])->name('showClient');
@@ -76,3 +76,6 @@ Route::get('restoreStudent/{id}',[Studentcontroller::class,'restore'])->name('re
 Route::delete('forceDeleteStudent',[Studentcontroller::class,'forceDelete'])->name('forceDeleteStudent');
 
 Route::get('/users', [UserController::class, 'index']);
+Auth::routes(['verify'=>true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
