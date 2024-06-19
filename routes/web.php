@@ -49,6 +49,9 @@ Route::get('form', function () {
 });
 Route::post('recForm1', [MyController::class,'receiveData'])->name('form');
 Route::get('test10',[MyController::class,'my_data']);
+Route::get('mySession',[MyController::class,'myval']);
+Route::get('sessionVal',[MyController::class,'restoreVal']);
+Route::get('deleteVal',[MyController::class,'deleteVal']);
 
 // Clients
 Route::post('insertClient',[ClientController::class,'store'])->name('insertClient');

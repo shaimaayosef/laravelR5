@@ -17,4 +17,18 @@ class MyController extends Controller
         $lname = $request->lname;
         return view('test', compact('fname', 'lname'));
     }
+
+    public function myval(){
+        // session()->put('test', 'First Laravel session');
+        session()->flash('test2', 'First Laravel session');
+        return 'session created';
+    }
+    public function restoreVal(){
+        return 'my session value is:'.session('test2') ;
+    }
+    public function deleteVal(){
+        // session()->forget('test');
+        session()->flush();
+        return 'session removed';
+    }
 }
