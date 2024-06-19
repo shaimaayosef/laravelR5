@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Symfony\Component\VarDumper\Cloner\Data;
+use App\Mail\ContactClinte;
+use App\Models\Client;
+use Illuminate\Support\Facades\Mail;
 
 class MyController extends Controller
 {
@@ -30,5 +33,13 @@ class MyController extends Controller
         // session()->forget('test');
         session()->flush();
         return 'session removed';
+    }
+    public function sentClientMail(){
+        $data=Client::findOrFail(1)->toArray();
+        $data['theMessage']='hello dear';
+        Mail::to($data['email'])->send( 
+            new ContactClinte($data)
+        );
+        return "mail sent!";
     }
 }

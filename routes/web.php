@@ -52,6 +52,7 @@ Route::get('test10',[MyController::class,'my_data']);
 Route::get('mySession',[MyController::class,'myval']);
 Route::get('sessionVal',[MyController::class,'restoreVal']);
 Route::get('deleteVal',[MyController::class,'deleteVal']);
+Route::get('sentClientMail',[MyController::class,'sentClientMail']);
 
 // Clients
 Route::post('insertClient',[ClientController::class,'store'])->name('insertClient');
