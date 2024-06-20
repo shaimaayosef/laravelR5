@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyController;
@@ -6,7 +8,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Studentcontroller;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ContactFormController;
-
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -57,6 +59,7 @@ Route::get('sessionVal',[MyController::class,'restoreVal']);
 Route::get('deleteVal',[MyController::class,'deleteVal']);
 Route::get('sentClientMail',[MyController::class,'sentClientMail']);
 Route::post('/submit-contact-form', [ContactFormController::class,'send'])->name('contact.send');
+Route::post('/submit-name-login', [LoginController::class,'name'])->name('login.name');
 
 // Clients
 Route::post('insertClient',[ClientController::class,'store'])->name('insertClient');
