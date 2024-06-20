@@ -39,7 +39,7 @@ class ContactFormMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.maileToClient',
+            markdown: 'emails.contactMail',
             with:[
                 'data'=>$this->data,
             ]

@@ -12,10 +12,13 @@ class ContactFormController extends Controller
 {
     public function send(Request $request)
 {
-    $data=Client::findOrFail(1)->toArray();
-    $data['theMessage']='hello dear';
+    $data = [
+        'name' => $request->name,
+        'email' => $request->email,
+        'message' => $request->message,
+    ];
     Mail::to($data['email'])->send( 
-        new ContactClinte($data)
+        new ContactFormMail($data)
     );
     return "mail sent!";
 }
