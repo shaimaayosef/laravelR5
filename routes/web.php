@@ -5,12 +5,15 @@ use App\Http\Controllers\MyController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Studentcontroller;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ContactFormController;
 
 
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('contact', function () {
+    return view('contactForm');
+});
 // Route::get( 'marwa/{id?}', function ($id=0) {
 //     return  ('welcome to my first website'.$id);
 
@@ -53,6 +56,7 @@ Route::get('mySession',[MyController::class,'myval']);
 Route::get('sessionVal',[MyController::class,'restoreVal']);
 Route::get('deleteVal',[MyController::class,'deleteVal']);
 Route::get('sentClientMail',[MyController::class,'sentClientMail']);
+Route::post('/submit-contact-form', [ContactFormController::class,'send'])->name('contact.send');
 
 // Clients
 Route::post('insertClient',[ClientController::class,'store'])->name('insertClient');
