@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="{{LaravelLocalization::getCurrentLocale()}}" dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}"><head>
   <title>Clients</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,12 +12,12 @@
     @include('includes.nav')
 
 <div class="container">
-  <h2>Clients Data</h2>
+  <h2>{{__('messages.Clients-Data')}}</h2>
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Client Name</th>
-        <th>Phone</th>
+        <th>{{__('messages.Client-Name')}}</th>
+        <th>{{__('messages.Phone')}}</th>
         <th>Email</th>
         <th>Website</th>
         <th>city</th>
