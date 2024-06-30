@@ -9,6 +9,7 @@ use App\Http\Controllers\Studentcontroller;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ContactFormController;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 Route::group(
     [
@@ -95,4 +96,8 @@ Route::group(
                     Auth::routes(['verify'=>true]);
 
                     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+                    Route::get('/auth/redirect', function () {return Socialite::driver('facebook')->redirect();})->name('facebookRedirect'); //go to facebook
+                    Route::get('/auth/callback', function () {$user = Socialite::driver('facebook')->user();}); //get array of data from facebook
+
 });
